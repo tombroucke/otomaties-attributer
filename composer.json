@@ -1,0 +1,23 @@
+{
+    "name": "tombroucke/otomaties-attributer",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "Otomaties\\Attributer\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tom Broucke",
+            "email": "tom@tombroucke.be"
+        }
+    ],
+    "require": {
+        "illuminate/container": "^10.45",
+        "illuminate/config": "^10.45",
+        "illuminate/support": "^10.45"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.17"
+    }
+}
