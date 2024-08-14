@@ -97,7 +97,7 @@ class Plugin extends Container
 
     public function runLoader(): void
     {
-        apply_filters('plugin_boilerplate_loader', $this->getLoader())
+        apply_filters('otomaties_attributer_loader', $this->getLoader())
             ->run();
     }
 

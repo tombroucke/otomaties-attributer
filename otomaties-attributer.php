@@ -7,7 +7,7 @@ use Otomaties\Attributer\Helpers\View;
 use Otomaties\Attributer\Plugin;
 
 /**
- * Plugin Name:       Otomaties attributer
+ * Plugin Name:       Otomaties Attributer
  * Description:       Attribute visitors to a specific source
  * Version:           0.1.0
  * Author:            Tom Broucke
@@ -26,7 +26,7 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
  *
  * @return Plugin
  */
-function pluginBoilerplate()
+function otomatiesAttributer()
 {
     static $plugin;
 
@@ -35,14 +35,14 @@ function pluginBoilerplate()
             new Loader,
             new Config
         );
-        do_action('plugin_boilerplate_functionality', $plugin);
+        do_action('otomaties_attributer_functionality', $plugin);
     }
 
     return $plugin;
 }
 
 // Bind the class to the service container
-add_action('plugin_boilerplate_functionality', function ($plugin) {
+add_action('otomaties_attributer_functionality', function ($plugin) {
     $plugin->bind(Loader::class, function ($plugin) {
         return $plugin->getLoader();
     });
@@ -55,10 +55,10 @@ add_action('plugin_boilerplate_functionality', function ($plugin) {
 }, 10);
 
 // Initialize the plugin and run the loader
-add_action('plugin_boilerplate_functionality', function ($plugin) {
+add_action('otomaties_attributer_functionality', function ($plugin) {
     $plugin
         ->initialize()
         ->runLoader();
 }, 9999);
 
-pluginBoilerplate();
+otomatiesAttributer();
