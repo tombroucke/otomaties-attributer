@@ -15,12 +15,12 @@ export default async (bud) => {
 
 	bud.devtool()
 
-	bud.setUrl(3030)
-	bud.setPath({'@certs' : '/Users/tombroucke/.config/valet/Certificates'})
-    bud.proxy("https://smappee.test")
-    bud.serve({
-		host: "smappee.test",
-		cert: bud.path('@certs/smappee.test.crt'),
-		key: bud.path('@certs/smappee.test.key'),
-    })
+	// bud.setUrl(3030)
+	// bud.setPath({'@certs' : '/Users/tombroucke/.config/valet/Certificates'})
+    // bud.proxy("https://smappee.test")
+    // bud.serve({
+	// 	host: "smappee.test",
+	// 	cert: bud.path('@certs/smappee.test.crt'),
+	// 	key: bud.path('@certs/smappee.test.key'),
+    // })
 }  

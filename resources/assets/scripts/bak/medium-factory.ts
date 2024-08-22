@@ -1,7 +1,12 @@
 import { Cpc, Direct, Email, Organic, Referral, Social } from './medium.js';
 
+
 export default class MediumFactory {
 	static createMedium(referer, querystring = '', landingPage = '') {
+
+		// check if utm is set
+
+
 		let medium = null;
 
 		querystring = querystring ? querystring : '';
