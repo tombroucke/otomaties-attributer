@@ -51,6 +51,19 @@ class Mediumator {
 			case "ecosia":
 			case "duckduckgo":
 			case "qwant":
+				medium = "organic";
+				break;
+			
+			case "twitter":
+			case "x":
+			case "facebook":
+			case "fb":
+			case "tiktok":
+			case "instagram":
+			case "ig":
+			case "linkedin":
+			case "pinterest":
+			case "youtube":
 				medium = "social";
 				break;
 			
@@ -67,7 +80,7 @@ class Mediumator {
 	 */
 	private static parseReferer(request : URL | string, referer: URL | string | null = null): TMedium
 	{
-		console.log(request, referer);
+		// console.log(request, referer);
 
 		//= cast anyway
 		request = new URL(request);
@@ -84,7 +97,10 @@ class Mediumator {
 			referer.toString(),
 			Tests.google,
 			Tests.bing,
-			Tests.yahoo
+			Tests.yahoo,
+			Tests.ecosia,
+			Tests.duckduckgo,
+			Tests.qwant
 		))
 		{
 			return new RefererMedium("organic", request, referer);
@@ -93,7 +109,12 @@ class Mediumator {
 		if (Match.one(
 			referer.toString(),
 			Tests.twitter,
-			Tests.facebook
+			Tests.facebook,
+			Tests.tiktok,
+			Tests.instagram,
+			Tests.linkedin,
+			Tests.pinterest,
+			Tests.youtube
 		))
 		{
 			return new RefererMedium("social", request, referer);

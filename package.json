@@ -1,12 +1,17 @@
 {
 	"devDependencies": {
+		"@babel/core": "^7.25.2",
+		"@babel/preset-env": "^7.25.4",
+		"@babel/preset-typescript": "^7.24.7",
+		"@jest/globals": "^29.7.0",
 		"@roots/bud": "^6.20.0",
 		"@roots/bud-eslint": "^6.20.0",
 		"@roots/bud-preset-recommend": "^6.20.0",
 		"@roots/bud-sass": "^6.20.0",
 		"@roots/eslint-config": "^6.20.0",
 		"jest": "^29.7.0",
-		"jest-environment-jsdom": "^29.7.0"
+		"jest-environment-jsdom": "^29.7.0",
+		"ts-jest": "^29.2.5"
 	},
 	"type": "module",
 	"dependencies": {
