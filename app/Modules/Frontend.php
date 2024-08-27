@@ -9,6 +9,7 @@ class Frontend extends Module
     public function init()
     {
         $this->loader->addAction('wp_enqueue_scripts', $this, 'enqueueScripts');
+        $this->loader->addFilter('gform_form_post_get_meta', $this, 'injectAttributorFields' );
     }
 
     public function enqueueScripts()
@@ -24,5 +25,28 @@ class Frontend extends Module
         //         wp_enqueue_style('otomaties-attributer-app-' . $css, $this->assets->url($css), [], null);
         //     }
         // }
+    }
+
+    /**
+     * Filter: gform_form_post_get_meta
+     * @see https://docs.gravityforms.com/gform_form_post_get_meta/
+     * 
+     * @param array $form Form Object
+     * @return array Form Object
+     */
+    public function injectAttributorFields( $form )
+    {
+        $mediumField = \GF_Fields::create([
+            'type' => 'hidden',
+            'id' => 9999,
+            'label' => 'Attributor - Medium',
+            'formId' => $form['id'],
+            'cssClass' => 'oto-attr__medium',
+            'size' => 'large'
+        ]);
+
+        $form['fields'][] = $mediumField;
+
+        return $form;
     }
 }

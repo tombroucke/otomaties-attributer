@@ -1,15 +1,17 @@
 import { TMedium, TMediumName } from "../types/Medium";
 import { TUrchinTrackingModule } from "../types/UrchinTrackingModule";
-import { Match, Test, Tests } from "./Matcher";
+import { Match, Tests } from "./Matcher";
 import { RefererMedium, UtmMedium } from "./Medium";
 
 
 class Mediumator {
 	/**
-	 * Returns a predefined Medium 
+	 * Returns a Medium object
 	 * 
-	 * @param url 
-	 * @returns 
+	 * @param {URL | String } request 	The requested url; e.g. https://mysite.com/nl/contact/
+	 * @param {URL | string} referer	(optional) The source url from which the page has been requested
+	 * 
+	 * @returns {TMedium} An object with 4 properties type, medium, request and referer
 	 */
 	static test(request: URL | string, referer: URL | string | null = null): TMedium {
 		//= check if URL has UTM
@@ -41,7 +43,6 @@ class Mediumator {
 			case "pmax":
 			case "leadgen":
 			case "search":
-			case "display":
 				medium = "cpc";
 				break;
 			
@@ -80,14 +81,18 @@ class Mediumator {
 	 */
 	private static parseReferer(request : URL | string, referer: URL | string | null = null): TMedium
 	{
-		// console.log(request, referer);
-
 		//= cast anyway
 		request = new URL(request);
 		referer = referer ? new URL(referer) : null;
 
+		//= parse referer exceptions
+		if (referer?.pathname.match(/^(?:\/wp)?\/wp-(?:admin|login)/))
+		{
+			referer = null;
+		}
+
 		//= NO referer
-		if (referer == null)
+		if (referer == null )
 		{
 			return new RefererMedium("direct", request);
 		}
