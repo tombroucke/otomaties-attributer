@@ -9,7 +9,7 @@ use Otomaties\Attributer\Plugin;
 /**
  * Plugin Name:       Otomaties Attributer
  * Description:       Attribute visitors to a specific source
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            Tom Broucke
  * Author URI:        https://tombroucke.be/
  * License:           GPL-2.0+

@@ -36,7 +36,7 @@ class Frontend extends Module
      */
     public function injectAttributorFields( $form )
     {
-        $mediumField = \GF_Fields::create([
+        $form['fields'][] = \GF_Fields::create([
             'type' => 'hidden',
             'id' => 9999,
             'label' => 'Attributor - Medium',
@@ -45,7 +45,23 @@ class Frontend extends Module
             'size' => 'large'
         ]);
 
-        $form['fields'][] = $mediumField;
+        $form['fields'][] = \GF_Fields::create([
+            'type' => 'hidden',
+            'id' => 9999,
+            'label' => 'Attributor - Request',
+            'formId' => $form['id'],
+            'cssClass' => 'oto-attr__request',
+            'size' => 'large'
+        ]);
+
+        $form['fields'][] = \GF_Fields::create([
+            'type' => 'hidden',
+            'id' => 9999,
+            'label' => 'Attributor - Referer',
+            'formId' => $form['id'],
+            'cssClass' => 'oto-attr__referer',
+            'size' => 'large'
+        ]);
 
         return $form;
     }

@@ -1,0 +1,20 @@
+{
+  "app": {
+    "css": [
+      "css/app.ef46db.css"
+    ],
+    "js": [
+      "js/app.04ed7f.js"
+    ],
+    "dependencies": []
+  },
+  "admin": {
+    "css": [
+      "css/admin.ef46db.css"
+    ],
+    "js": [
+      "js/admin.ef46db.js"
+    ],
+    "dependencies": []
+  }
+}

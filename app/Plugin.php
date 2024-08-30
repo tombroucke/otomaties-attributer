@@ -3,8 +3,6 @@
 namespace Otomaties\Attributer;
 
 use Illuminate\Container\Container;
-use Illuminate\Support\Str;
-use Otomaties\Attributer\Command\CommandRegistrar;
 use Otomaties\Attributer\Helpers\Config;
 use Otomaties\Attributer\Helpers\Loader;
 use Otomaties\Attributer\Modules\Admin;
@@ -32,42 +30,8 @@ class Plugin extends Container
         $this->loader->addAction('init', $this, 'loadTextDomain');
 
         $this->loadModules();
-        $this->initCommands();
-        $this->initPostTypes();
-        $this->initOptionsPages();
 
         return $this;
-    }
-
-    private function initCommands()
-    {
-        $this->make(CommandRegistrar::class)
-            ->register();
-    }
-
-    private function initPostTypes()
-    {
-        collect([
-            'PostTypes',
-            'Taxonomies',
-        ])->each(function ($registerableClassPath) {
-            $this
-                ->collectFilesIn("$registerableClassPath")
-                ->each(function ($filename) {
-                    $className = $this->namespacedClassNameFromFilename($filename);
-                    $this->loader->addAction('init', new $className, 'register');
-                });
-        });
-    }
-
-    private function initOptionsPages()
-    {
-        $this
-            ->collectFilesIn('OptionsPages')
-            ->each(function ($filename) {
-                $className = $this->namespacedClassNameFromFilename($filename);
-                $this->loader->addAction('acf/init', new $className, 'register');
-            });
     }
 
     private function loadModules(): self
@@ -99,32 +63,5 @@ class Plugin extends Container
     {
         apply_filters('otomaties_attributer_loader', $this->getLoader())
             ->run();
-    }
-
-    private function collectFilesIn($path)
-    {
-        $fullPath = $this->config('paths.app') . "/$path";
-
-        return collect(array_merge(
-            glob("$fullPath/*.php"),
-            glob("$fullPath/**/*.php")
-        ))
-            ->reject(function ($filename) {
-                return Str::contains($filename, 'Example');
-            })
-            ->reject(function ($filename) {
-                return Str::contains($filename, '/Abstracts') || Str::contains($filename, '/Traits') || Str::contains($filename, '/Contracts');
-            });
-    }
-
-    private function namespacedClassNameFromFilename($filename)
-    {
-        return Str::of($filename)
-            ->replace($this->config('paths.app'), '')
-            ->ltrim('/')
-            ->replace('/', '\\')
-            ->rtrim('.php')
-            ->prepend('\\' . __NAMESPACE__ . '\\')
-            ->__toString();
     }
 }
