@@ -38,7 +38,7 @@ class Frontend extends Module
     {
         $form['fields'][] = \GF_Fields::create([
             'type' => 'hidden',
-            'id' => 9999,
+            'id' => 45678,
             'label' => 'Attributor - Medium',
             'formId' => $form['id'],
             'cssClass' => 'oto-attr__medium',
@@ -47,7 +47,7 @@ class Frontend extends Module
 
         $form['fields'][] = \GF_Fields::create([
             'type' => 'hidden',
-            'id' => 9999,
+            'id' => 45679,
             'label' => 'Attributor - Request',
             'formId' => $form['id'],
             'cssClass' => 'oto-attr__request',
@@ -56,7 +56,7 @@ class Frontend extends Module
 
         $form['fields'][] = \GF_Fields::create([
             'type' => 'hidden',
-            'id' => 9999,
+            'id' => 45680,
             'label' => 'Attributor - Referer',
             'formId' => $form['id'],
             'cssClass' => 'oto-attr__referer',
