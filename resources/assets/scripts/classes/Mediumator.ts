@@ -1,7 +1,8 @@
+import { TGad } from "../types/Gad";
 import { TMedium, TMediumName } from "../types/Medium";
 import { TUrchinTrackingModule } from "../types/UrchinTrackingModule";
 import { Match, Tests } from "./Matcher";
-import { RefererMedium, UtmMedium } from "./Medium";
+import { RefererMedium, GadMedium, UtmMedium } from "./Medium";
 
 
 class Mediumator {
@@ -20,6 +21,13 @@ class Mediumator {
 		if (utm.medium)
 		{
 			return this.parseUtm( utm );
+		}
+
+		const gad = this.getGad( request) ;
+
+		if (gad.gad_source)
+		{
+			return new GadMedium( 'cpc', gad.url );
 		}
 
         return this.parseReferer( request, referer );
@@ -90,7 +98,7 @@ class Mediumator {
 		{
 			referer = null;
 		}
-
+		
 		//= NO referer
 		if (referer == null )
 		{
@@ -148,6 +156,24 @@ class Mediumator {
 			term: url.searchParams.get("utm_term"),
 			content: url.searchParams.get("utm_content"),
 		};
+	}
+
+	private static getGad(url: URL | string): TGad {
+		//= cast anyway
+		url = new URL(url);
+
+		//= bail early
+		if (!(url instanceof URL))
+		{
+			throw new Error("Refer not an URL!");
+		}
+
+		//= return
+		return {
+			url: url,
+			gad_source: url.searchParams.get("gad_source"),
+			gclid: url.searchParams.get("gclid"),
+		}
 	}
 }
 

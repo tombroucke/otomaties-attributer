@@ -20,6 +20,17 @@ class Medium implements TMedium {
 	}
 }
 
+class GadMedium extends Medium {
+	constructor(
+		medium: TMediumName,
+		request: URL | null = null,
+		referer: URL | null = null
+	)
+	{
+		super( "gad", medium, request, referer );
+	}
+}
+
 class UtmMedium extends Medium {
 	constructor(
 		medium: TMediumName,
@@ -42,4 +53,4 @@ class RefererMedium extends Medium {
 	}
 }
 
-export { UtmMedium, RefererMedium };
+export { UtmMedium, GadMedium, RefererMedium };

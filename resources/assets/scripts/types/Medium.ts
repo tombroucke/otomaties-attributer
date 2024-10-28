@@ -11,7 +11,7 @@ type TMedium = {
 	referer: URL | null;
 }
 
-type TMediumType = 'utm' | 'referer' | null;
+type TMediumType = 'utm' | 'gad' | 'referer' | null;
 
 type TMediumName = 'cpc' | 'organic' | 'social' | 'email' | 'referral' | 'direct' | null;
 

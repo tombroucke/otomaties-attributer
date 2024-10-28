@@ -45,6 +45,12 @@ test('is utm/cpc', () => {
     )).toMatchObject({
         medium: 'cpc'
     });
+
+    expect(Mediumator.test(
+        "https://smappee.test/nl/laadpaal/thuis/?gad_source=1&gclid=EAIaIQobChMI4JWg-q2xiQMV92hBAh1w9CH9EAMYAiAAEgKC5_D_BwE",
+    )).toMatchObject({
+        medium: 'cpc'
+    });
 });
 
 test('is utm/organic', () => {
